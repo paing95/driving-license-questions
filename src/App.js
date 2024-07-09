@@ -104,7 +104,7 @@ function App() {
           answer={question.answer}
           correct_answer={question.correct_answer}
           handleChange={handleChange}
-          key={`${question.id}-${resetCount}`}
+          key={`${key + 1}-${resetCount}`}
           showAnswer={showAnswer}
         />)}
       </Box>

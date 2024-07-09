@@ -36,8 +36,7 @@ const Question = ({ id, question, options, handleChange, correct_answer, showAns
                         <FormControlLabel
                             value={option} 
                             control={<Radio />} 
-                            label={option} 
-                            key={index}
+                            label={option}
                         />
                         {showAnswer && option === value && correct_answer !== option && <Avatar sx={{ bgcolor: red[500], width: "20px", height: "20px" }}>
                             <ClearIcon sx={{ width: "0.5em", height: "0.5em" }} />
