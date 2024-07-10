@@ -1692,6 +1692,50 @@ export const data = [
         ],
         "answer": "",
         "correct_answer": "shift to neutral, slow down, pull over, and stop."
+    },
+    {
+        "question": "Under normal conditions a safe following distance on the highway is:",
+        "options": [
+            "at least two seconds.",
+            "at least three metres.",
+            "at least three seconds.",
+            "at least three car lengths."
+        ],
+        "answer": "",
+        "correct_answer": "at least three seconds."
+    },
+    {
+        "question": "Before you change lanes:",
+        "options": [
+            "signal, mirror check, shoulder check and change when safe.",
+            "decrease speed and give a correct signal.",
+            "look in your rear-view mirror while changing lanes.",
+            "give the correct signal and lane change."
+        ],
+        "answer": "",
+        "correct_answer": "signal, mirror check, shoulder check and change when safe."
+    },
+    {
+        "question": "When riding in a vehicle, children weighing under 18 kgs (40 lbs):",
+        "options": [
+            "may be safely held by a strong adult.",
+            "will not be hurt in a collision because they are small.",
+            "must be buckled into proper child safety restraints that are fastened to the vehicle.",
+            "are allowed to wear an adult sized seatbelt."
+        ],
+        "answer": "",
+        "correct_answer": "must be buckled into proper child safety restraints that are fastened to the vehicle."
+    },
+    {
+        "question": "What should you do if part of your brake system fails?",
+        "options": [
+            "Give up, there is nothing you can do.",
+            "Push harder on your brakes even if the pedal goes to the floor and use your parking brake if necessary.",
+            "Pump your brakes.",
+            "Try to lock up the rear wheels."
+        ],
+        "answer": "",
+        "correct_answer": "Push harder on your brakes even if the pedal goes to the floor and use your parking brake if necessary."
     }
 ];
 

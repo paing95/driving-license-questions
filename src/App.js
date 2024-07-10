@@ -46,7 +46,7 @@ function App() {
   }
 
   const handleResetClicked = () => {
-    console.log('=== Data ===', data);
+    // console.log('=== Data ===', data);
     setQuestions(JSON.parse(JSON.stringify(data)));
     setResetCount(prev => prev + 1);
     setShowAnswer(false);
@@ -70,18 +70,39 @@ function App() {
           padding: "0.5em" 
         }}
       >
+        <Box
+          component="div" 
+          sx={{ 
+            marginRight: "1em", 
+            gap: "1em",
+            flexGrow: "1",
+            display: "flex",
+            flexFlow: "row",
+            justifyContent: "space-between",
+            alignItems: "center"
+          }}
+        >
+          <Button 
+            color="inherit" 
+            onClick={() => window.location.href = 'https://sgi.sk.ca/handbook/-/knowledge_base/drivers/introduction'}>
+              Driver's Handbook
+          </Button>
           <Typography 
-            variant="h6" 
-            component="div" 
-            sx={{ 
-              marginRight: "1em", 
-              flexGrow: "1" 
-            }
-          }>
+            variant="subtitle1" 
+            >
             Answered: {questions.filter(x => x.answer !== "").length} / {questions.length}
           </Typography>
-          <Button color="inherit" onClick={handleResetClicked}>Reset</Button>
-          <Button color="inherit" onClick={handleSubmitClicked}>Submit</Button>
+        </Box>
+        <Button 
+          color="inherit" 
+          onClick={handleResetClicked}>
+            Reset
+        </Button>
+        <Button 
+          color="inherit" 
+          onClick={handleSubmitClicked}>
+            Submit
+        </Button>
       </AppBar>
       <Box 
         sx={{ 
