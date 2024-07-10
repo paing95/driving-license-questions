@@ -46,8 +46,11 @@ function App() {
   }
 
   const handleResetClicked = () => {
-    // console.log('=== Data ===', data);
-    setQuestions(JSON.parse(JSON.stringify(data)));
+    let copiedData = shuffleArray(JSON.parse(JSON.stringify(data)));
+    copiedData.forEach(copied => {
+      copied.options = shuffleArray(copied.options);
+    });
+    setQuestions(copiedData);
     setResetCount(prev => prev + 1);
     setShowAnswer(false);
     setShowAlert(false);
@@ -55,9 +58,11 @@ function App() {
 
   // useEffects
   useEffect(() => {
-    setQuestions(JSON.parse(JSON.stringify(
-      shuffleArray(data)
-    )));
+    let copiedData = shuffleArray(JSON.parse(JSON.stringify(data)));
+    copiedData.forEach(copied => {
+      copied.options = shuffleArray(copied.options);
+    });
+    setQuestions(copiedData);
   }, []);
 
   return (
