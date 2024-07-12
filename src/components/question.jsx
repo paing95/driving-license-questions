@@ -30,7 +30,7 @@ const Question = ({ id, question, options, handleChange, correct_answer, showAns
                 {options.map(
                     (option, index) => <Box 
                         component={'div'} 
-                        sx={{ display: "flex", flexFlow: "row", alignItems: "center" }}
+                        sx={{ display: "flex", flexFlow: "row", alignItems: "center", paddingTop: '0.5em', paddingBottom: '0.5em' }}
                         key={index}
                     >
                         <FormControlLabel

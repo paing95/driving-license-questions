@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 // component
 import Question from './components/question';
 // data
-import { data } from "./data/questions";
+import data from './data/questions.json';
 // MUI
 import { Alert, AppBar, Box, Button, Container, Typography } from '@mui/material';
 // css
@@ -78,8 +78,8 @@ function App() {
         <Box
           component="div" 
           sx={{ 
-            marginRight: "1em", 
-            gap: "1em",
+            marginRight: "0.5em", 
+            gap: "0.5em",
             flexGrow: "1",
             display: "flex",
             flexFlow: "row",
@@ -90,7 +90,7 @@ function App() {
           <Button 
             color="inherit" 
             onClick={() => window.location.href = 'https://sgi.sk.ca/handbook/-/knowledge_base/drivers/introduction'}>
-              Driver's Handbook
+              Handbook
           </Button>
           <Typography 
             variant="subtitle1" 
