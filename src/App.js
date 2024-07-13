@@ -37,12 +37,12 @@ function App() {
   };
 
   const handleSubmitClicked = () => {
-    setShowAlert(false);
-    if (questions.filter(x => x.answer !== "").length !== questions.length) {
-      setShowAlert(true);
-    } else {
-      setShowAnswer(true);
-    }
+    setShowAlert(true);
+    // if (questions.filter(x => x.answer !== "").length !== questions.length) {
+    //   setShowAlert(true);
+    // } else {
+    //   setShowAnswer(true);
+    // }
   }
 
   const handleResetClicked = () => {
