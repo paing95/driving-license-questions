@@ -37,7 +37,8 @@ function App() {
   };
 
   const handleSubmitClicked = () => {
-    setShowAlert(true);
+    setShowAlert(false);
+    setShowAnswer(true);
     // if (questions.filter(x => x.answer !== "").length !== questions.length) {
     //   setShowAlert(true);
     // } else {
