@@ -1,0 +1,21 @@
+html {
+    scroll-behavior: smooth;
+}
+
+@media only screen and (max-width : 1024px) {
+    .not-mobile {
+        display: none !important;
+    }
+    .mobile-only {
+        display: block !important;
+    }
+}
+
+@media only screen and (min-width : 1025px) {
+    .not-mobile {
+        display: block !important;
+    }
+    .mobile-only {
+        display: none !important;
+    }
+}

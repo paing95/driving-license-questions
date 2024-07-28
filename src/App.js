@@ -1,11 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 // component
-import Question from './components/question';
+import Question from './components/Question';
+import ScrollToTop from './components/ScrollToTop';
+import Pagination from './components/Pagination';
+import Logo from "../src/asset/favicon.ico";
 // data
 import data from './data/questions.json';
 // MUI
-import { Alert, AppBar, Box, Button, Container, Typography } from '@mui/material';
+import { 
+  Alert, 
+  AppBar, 
+  Box, 
+  Button, 
+  Container,
+  IconButton,
+  Tooltip,
+  Typography 
+} from '@mui/material';
+import ArticleIcon from '@mui/icons-material/Article';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import PublishIcon from '@mui/icons-material/Publish';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 // css
+import './App.css';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -13,12 +30,71 @@ import '@fontsource/roboto/700.css';
 
 function App() {
 
+  const QuestionsRef = useRef();
+  const ScrollToRef = useRef();
   const [questions, setQuestions] = useState([]);
   const [answeredCount, setAnsweredCount] = useState(0);
   const [resetCount, setResetCount] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentQuestions, setCurrentQuestions] = useState([]);
+  const [size, setSize] = useState(10);
 
+  // styles
+  const mobileBoxStyles = {
+    display: "flex",
+    flexFlow: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  };
+
+  const logoStyles = { 
+    maxHeight: "35px", 
+    marginBottom: "0.3em",
+    cursor: "pointer"
+  };
+
+  const logoTextStyles = {
+    mr: 2,
+    ml: 1,
+    mb: "0.3em",
+    fontFamily: 'monospace',
+    fontWeight: 700,
+    letterSpacing: '.1rem',
+    color: 'inherit',
+    textDecoration: 'none'
+  };
+
+  const AppBarStyles = { 
+    justifyContent: "space-between", 
+    flexFlow: "row", 
+    padding: "0.5em" 
+  };
+
+  const AppBarLeftStyles = { 
+    marginRight: "0.5em", 
+    gap: "0.5em",
+    flexGrow: "1",
+    display: "flex",
+    flexFlow: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  };
+
+  const ContentStyles = { 
+    display: "flex", 
+    flexFlow: "column", 
+    gap: "0.5em", 
+    overflowY: "auto", 
+    height: "calc(100vh - 100px)",
+    paddingLeft: "1.5em", 
+    paddingRight: "1.5em", 
+    paddingTop: '0.2em', 
+    paddingBottom: "1em" 
+  };
+
+  // events
   const shuffleArray = (arr) => {
       const array = [...arr];
       for (let i = array.length - 1; i > 0; i--) {
@@ -39,19 +115,19 @@ function App() {
   const handleSubmitClicked = () => {
     setShowAlert(false);
     setShowAnswer(true);
-    // if (questions.filter(x => x.answer !== "").length !== questions.length) {
-    //   setShowAlert(true);
-    // } else {
-    //   setShowAnswer(true);
-    // }
   }
 
   const handleResetClicked = () => {
     let copiedData = shuffleArray(JSON.parse(JSON.stringify(data)));
+    let count = 1;
     copiedData.forEach(copied => {
+      copied.id = count;
       copied.options = shuffleArray(copied.options);
+      count ++;
     });
     setQuestions(copiedData);
+    setCurrentPage(1);
+    setCurrentQuestions(copiedData.slice(0, 1 * size))
     setResetCount(prev => prev + 1);
     setShowAnswer(false);
     setShowAlert(false);
@@ -60,81 +136,150 @@ function App() {
   // useEffects
   useEffect(() => {
     let copiedData = shuffleArray(JSON.parse(JSON.stringify(data)));
+    let count = 1;
     copiedData.forEach(copied => {
+      copied.id = count;
       copied.options = shuffleArray(copied.options);
+      count ++;
     });
     setQuestions(copiedData);
+    setCurrentQuestions(copiedData.slice((currentPage-1) * size, currentPage * size));
   }, []);
 
   return (
     <Container disableGutters maxWidth={'xl'}>
       <AppBar 
         position="static" 
-        sx={{ 
-          justifyContent: "space-between", 
-          flexFlow: "row", 
-          padding: "0.5em" 
-        }}
+        sx={AppBarStyles}
       >
         <Box
           component="div" 
-          sx={{ 
-            marginRight: "0.5em", 
-            gap: "0.5em",
-            flexGrow: "1",
-            display: "flex",
-            flexFlow: "row",
-            justifyContent: "space-between",
-            alignItems: "center"
-          }}
+          sx={AppBarLeftStyles}
         >
-          <Button 
-            color="inherit" 
-            onClick={() => window.location.href = 'https://sgi.sk.ca/handbook/-/knowledge_base/drivers/introduction'}>
-              Handbook
-          </Button>
-          <Typography 
-            variant="subtitle1" 
+          <Box
+            sx={mobileBoxStyles}
+          >
+            <img 
+              src={Logo} 
+              style={logoStyles}
+              onClick={() => window.location.href = "/"}
+            />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={logoTextStyles}
             >
-            Answered: {questions.filter(x => x.answer !== "").length} / {questions.length}
-          </Typography>
+              DrivinLic
+            </Typography>
+            <Button 
+              className='not-mobile'
+              color="inherit" 
+              onClick={() => window.location.href = 'https://sgi.sk.ca/handbook/-/knowledge_base/drivers/introduction'}>
+                Handbook
+            </Button>
+            <Tooltip
+              className='mobile-only'
+              title="Handbook"
+              arrow
+            >
+              <IconButton 
+                aria-label='Handbook'
+                color='inherit'
+              >
+                <ArticleIcon />
+              </IconButton>
+            </Tooltip>
+          </Box>
+          <Box
+            sx={mobileBoxStyles}
+          >
+            <Tooltip
+              className='mobile-only'
+              title="Answered"
+              arrow
+            >
+              <QuestionAnswerIcon />
+            </Tooltip>
+            <Typography 
+              variant="subtitle1" 
+              sx={{ paddingLeft: '0.4em' }}
+              className='mobile-only'
+            >
+              {questions.filter(x => x.answer !== "").length} / {questions.length}
+            </Typography>
+            <Typography 
+              variant="subtitle1" 
+              className="not-mobile"
+              >
+              Answered: {questions.filter(x => x.answer !== "").length} / {questions.length}
+            </Typography>
+          </Box>
         </Box>
+        <Tooltip title={"Reset"} arrow className='mobile-only'>
+          <IconButton 
+            aria-label='Reset'
+            onClick={handleResetClicked}
+            color='inherit'
+          >
+            <RestartAltIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title={"Submit"} arrow className='mobile-only'>
+          <IconButton 
+            aria-label='Submit'
+            onClick={handleSubmitClicked}
+            color='inherit'
+          >
+            <PublishIcon />
+          </IconButton>
+        </Tooltip>
         <Button 
           color="inherit" 
-          onClick={handleResetClicked}>
+          onClick={handleResetClicked}
+          className="not-mobile"
+        >
             Reset
         </Button>
         <Button 
           color="inherit" 
-          onClick={handleSubmitClicked}>
+          onClick={handleSubmitClicked}
+          className="not-mobile"
+        >
             Submit
         </Button>
       </AppBar>
       <Box 
-        sx={{ 
-          display: "flex", 
-          flexFlow: "column", 
-          gap: "1em", 
-          overflowY: "auto", 
-          height: "calc(100vh - 100px)", 
-          paddingLeft: "1.5em", 
-          paddingRight: "1.5em", 
-          paddingTop: '1em', 
-          paddingBottom: "1em" 
-        }
-      }>
+        sx={ContentStyles}
+        ref={QuestionsRef}
+      >
+        <Box ref={ScrollToRef} sx={{ scrollBehavior: "smooth" }}></Box>
         {showAlert && <Alert severity="error">Please answer all the questions.</Alert>}
-        {questions.map((question, key) => <Question
-          id={key + 1}
+        {currentQuestions.map((question, key) => <Question
+          id={question.id}
           question={question.question}
           options={question.options}
           answer={question.answer}
           correct_answer={question.correct_answer}
           handleChange={handleChange}
-          key={`${key + 1}-${resetCount}`}
+          key={`${question.id}-${resetCount}`}
           showAnswer={showAnswer}
         />)}
+        <Pagination
+          pageCount={questions.length % size !== 0 ? (Math.floor(questions.length / size)) + 1 : Math.floor(questions.length / size)}
+          currentPage={currentPage}
+          onChange={(page) => {
+            setCurrentPage(page);
+            setCurrentQuestions(questions.slice((page-1) * size, page * size));
+          }}
+        />
       </Box>
+
+      <ScrollToTop 
+        scrollRef={ScrollToRef}
+        fadeRef={QuestionsRef}
+      />
     </Container>
   );
 }

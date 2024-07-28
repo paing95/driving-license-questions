@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 // MUI
 import {
     Avatar,
@@ -13,7 +13,7 @@ import { blue, red } from '@mui/material/colors';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 
-const Question = ({ id, question, options, handleChange, correct_answer, showAnswer }) => {
+export default function Question ({ id, question, options, handleChange, correct_answer, showAnswer }) {
 
     const [value, setValue] = useState(null);
 
@@ -30,7 +30,7 @@ const Question = ({ id, question, options, handleChange, correct_answer, showAns
                 {options.map(
                     (option, index) => <Box 
                         component={'div'} 
-                        sx={{ display: "flex", flexFlow: "row", alignItems: "center", paddingTop: '0.5em', paddingBottom: '0.5em' }}
+                        sx={{ display: "flex", flexFlow: "row", alignItems: "center", paddingTop: '0.2em', paddingBottom: '0.2em' }}
                         key={index}
                     >
                         <FormControlLabel
@@ -49,5 +49,3 @@ const Question = ({ id, question, options, handleChange, correct_answer, showAns
         </FormControl>
     )
 };
-
-export default Question;
