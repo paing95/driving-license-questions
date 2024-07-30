@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/driving-license-questions/static/css/main.dcc82235.css",
-    "main.js": "/driving-license-questions/static/js/main.7296dc0d.js",
+    "main.css": "/driving-license-questions/static/css/main.599bdb90.css",
+    "main.js": "/driving-license-questions/static/js/main.e2d4728a.js",
     "service-worker.js": "/driving-license-questions/service-worker.js",
     "static/media/roboto-latin-500-normal.woff2": "/driving-license-questions/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2",
     "static/media/roboto-latin-700-normal.woff2": "/driving-license-questions/static/media/roboto-latin-700-normal.227c93190fe7f82de3f8.woff2",
@@ -33,6 +33,7 @@
     "static/media/roboto-cyrillic-300-normal.woff2": "/driving-license-questions/static/media/roboto-cyrillic-300-normal.1431d1cef06ad04f5458.woff2",
     "static/media/roboto-cyrillic-500-normal.woff": "/driving-license-questions/static/media/roboto-cyrillic-500-normal.965aebef74db72eaf236.woff",
     "static/media/roboto-cyrillic-700-normal.woff": "/driving-license-questions/static/media/roboto-cyrillic-700-normal.f8a034d72aa6828199d4.woff",
+    "static/media/favicon.ico": "/driving-license-questions/static/media/favicon.713a2c136dc3e1175be6.ico",
     "static/media/roboto-cyrillic-300-normal.woff": "/driving-license-questions/static/media/roboto-cyrillic-300-normal.5b5f2f31962967dfc22c.woff",
     "static/media/roboto-cyrillic-400-normal.woff": "/driving-license-questions/static/media/roboto-cyrillic-400-normal.c1d66054fe23e181d92c.woff",
     "static/media/roboto-greek-300-normal.woff2": "/driving-license-questions/static/media/roboto-greek-300-normal.db2632771401f61463fe.woff2",
@@ -60,11 +61,11 @@
     "static/media/roboto-greek-ext-400-normal.woff": "/driving-license-questions/static/media/roboto-greek-ext-400-normal.f708607d2a7290fb8bfa.woff",
     "static/media/roboto-greek-ext-700-normal.woff": "/driving-license-questions/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/driving-license-questions/index.html",
-    "main.dcc82235.css.map": "/driving-license-questions/static/css/main.dcc82235.css.map",
-    "main.7296dc0d.js.map": "/driving-license-questions/static/js/main.7296dc0d.js.map"
+    "main.599bdb90.css.map": "/driving-license-questions/static/css/main.599bdb90.css.map",
+    "main.e2d4728a.js.map": "/driving-license-questions/static/js/main.e2d4728a.js.map"
   },
   "entrypoints": [
-    "static/css/main.dcc82235.css",
-    "static/js/main.7296dc0d.js"
+    "static/css/main.599bdb90.css",
+    "static/js/main.e2d4728a.js"
   ]
 }
