@@ -21,6 +21,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import PublishIcon from '@mui/icons-material/Publish';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import { red } from '@mui/material/colors';
 // css
 import './App.css';
 import '@fontsource/roboto/300.css';
@@ -30,6 +31,7 @@ import '@fontsource/roboto/700.css';
 
 function App() {
 
+  const HandbookRef = useRef();
   const QuestionsRef = useRef();
   const ScrollToRef = useRef();
   const [questions, setQuestions] = useState([]);
@@ -93,6 +95,12 @@ function App() {
     paddingTop: '0.2em', 
     paddingBottom: "1em" 
   };
+
+  const ErrorTextStyles = { 
+    color: "#EE2B2A", 
+    fontWeight: "600", 
+    textShadow: "0px 0px 4px #ddd" 
+  }
 
   // events
   const shuffleArray = (arr) => {
@@ -176,8 +184,12 @@ function App() {
             <Button 
               className='not-mobile'
               color="inherit" 
-              onClick={() => window.location.href = 'https://sgi.sk.ca/handbook/-/knowledge_base/drivers/introduction'}>
+              onClick={() => HandbookRef.current.click()}>
                 Handbook
+                <a 
+                  ref={HandbookRef}
+                  href='https://sgi.sk.ca/handbook/-/knowledge_base/drivers/introduction' 
+                  target='_blank'></a>
             </Button>
             <Tooltip
               className='mobile-only'
@@ -187,6 +199,7 @@ function App() {
               <IconButton 
                 aria-label='Handbook'
                 color='inherit'
+                onClick={() => HandbookRef.current.click()}
               >
                 <ArticleIcon />
               </IconButton>
@@ -207,13 +220,13 @@ function App() {
               sx={{ paddingLeft: '0.4em' }}
               className='mobile-only'
             >
-              {questions.filter(x => x.answer !== "").length} / {questions.length}
+              {questions.filter(x => x.answer !== "").length} {showAnswer && (<span>(<span style={ErrorTextStyles}>{questions.filter(x => x.answer !== "" && x.answer !== x.correct_answer).length}</span>)</span>)} / {questions.length}
             </Typography>
             <Typography 
               variant="subtitle1" 
               className="not-mobile"
               >
-              Answered: {questions.filter(x => x.answer !== "").length} / {questions.length}
+              Answered: {questions.filter(x => x.answer !== "").length} {showAnswer && (<span>(<span style={ErrorTextStyles}>{questions.filter(x => x.answer !== "" && x.answer !== x.correct_answer).length}</span>)</span>)} / {questions.length}
             </Typography>
           </Box>
         </Box>

@@ -15,7 +15,7 @@ export default function PaginationElement ({ pageCount, currentPage, onChange })
             count={pageCount} 
             page={currentPage}
             onChange={(e, page) => onChange(page)}
-            size="small"
+            size="large"
           />
         </Stack>
     )

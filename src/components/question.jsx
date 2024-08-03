@@ -13,12 +13,14 @@ import { blue, red } from '@mui/material/colors';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 
-export default function Question ({ id, question, options, handleChange, correct_answer, showAnswer }) {
+export default function Question ({ id, question, options, handleChange, correct_answer, showAnswer, answer }) {
 
     const [value, setValue] = useState(null);
 
     return (
-        <FormControl>
+        <FormControl
+            sx={{ padding: "0.5em" }}
+        >   
             <FormLabel sx={{ color: "#000 !important", fontWeight: "700" }}>{`${id}. ${question}`}</FormLabel>
             <RadioGroup
                 value={value}
