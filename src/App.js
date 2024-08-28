@@ -21,6 +21,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import PublishIcon from '@mui/icons-material/Publish';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import UTurnLeftIcon from '@mui/icons-material/UTurnLeft';
 import { red } from '@mui/material/colors';
 // css
 import './App.css';
@@ -125,11 +126,11 @@ function App() {
     setShowAnswer(true);
   }
 
-  const handleResetClicked = () => {
+  const handleRestartClicked = () => {
     let copiedData = shuffleArray(JSON.parse(JSON.stringify(data)));
     let count = 1;
     copiedData.forEach(copied => {
-      copied.id = count;
+      copied.sequence = count;
       copied.options = shuffleArray(copied.options);
       count ++;
     });
@@ -141,12 +142,17 @@ function App() {
     setShowAlert(false);
   };
 
+  const handleResetClicked = () => {
+    setShowAnswer(false);
+    setShowAlert(false);
+  }
+
   // useEffects
   useEffect(() => {
     let copiedData = shuffleArray(JSON.parse(JSON.stringify(data)));
     let count = 1;
     copiedData.forEach(copied => {
-      copied.id = count;
+      copied.sequence = count;
       copied.options = shuffleArray(copied.options);
       count ++;
     });
@@ -179,7 +185,7 @@ function App() {
               href="/"
               sx={logoTextStyles}
             >
-              DrivinLic
+              REGINA DLT
             </Typography>
             <Button 
               className='not-mobile'
@@ -230,13 +236,22 @@ function App() {
             </Typography>
           </Box>
         </Box>
+        <Tooltip title={"Restart"} arrow className='mobile-only'>
+          <IconButton 
+            aria-label='Restart'
+            onClick={handleRestartClicked}
+            color='inherit'
+          >
+            <RestartAltIcon />
+          </IconButton>
+        </Tooltip>
         <Tooltip title={"Reset"} arrow className='mobile-only'>
           <IconButton 
             aria-label='Reset'
             onClick={handleResetClicked}
             color='inherit'
           >
-            <RestartAltIcon />
+            <UTurnLeftIcon />
           </IconButton>
         </Tooltip>
         <Tooltip title={"Submit"} arrow className='mobile-only'>
@@ -248,6 +263,13 @@ function App() {
             <PublishIcon />
           </IconButton>
         </Tooltip>
+        <Button 
+          color="inherit" 
+          onClick={handleRestartClicked}
+          className="not-mobile"
+        >
+            Restart
+        </Button>
         <Button 
           color="inherit" 
           onClick={handleResetClicked}
@@ -271,6 +293,7 @@ function App() {
         {showAlert && <Alert severity="error">Please answer all the questions.</Alert>}
         {currentQuestions.map((question, key) => <Question
           id={question.id}
+          sequence={question.sequence}
           question={question.question}
           options={question.options}
           answer={question.answer}

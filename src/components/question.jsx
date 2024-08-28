@@ -13,15 +13,15 @@ import { blue, red } from '@mui/material/colors';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 
-export default function Question ({ id, question, options, handleChange, correct_answer, showAnswer, answer }) {
+export default function Question ({ sequence, question, options, handleChange, correct_answer, showAnswer, answer }) {
 
-    const [value, setValue] = useState(null);
+    const [value, setValue] = useState(answer);
 
     return (
         <FormControl
             sx={{ padding: "0.5em" }}
         >   
-            <FormLabel sx={{ color: "#000 !important", fontWeight: "700" }}>{`${id}. ${question}`}</FormLabel>
+            <FormLabel sx={{ color: "#000 !important", fontWeight: "700" }}>{`${sequence}. ${question}`}</FormLabel>
             <RadioGroup
                 value={value}
                 onChange={(e) => {
