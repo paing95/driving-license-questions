@@ -42,7 +42,7 @@ function App() {
   const [showAlert, setShowAlert] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentQuestions, setCurrentQuestions] = useState([]);
-  const [size, setSize] = useState(10);
+  const [size, setSize] = useState(20);
 
   // styles
   const mobileBoxStyles = {
@@ -98,9 +98,9 @@ function App() {
   };
 
   const ErrorTextStyles = { 
-    color: "#EE2B2A", 
+    color: "#b71c1c", 
     fontWeight: "600", 
-    textShadow: "0px 0px 4px #ddd" 
+    // textShadow: "0px 0px 4px #ddd" 
   }
 
   // events
@@ -289,6 +289,9 @@ function App() {
         sx={ContentStyles}
         ref={QuestionsRef}
       >
+        <Alert severity="info">The knowledge tests consist of two parts: understanding driving situations, and recognizing road rules and signs. 
+        This website is designed to help with the first part of the knowledge test. 
+        For the second part, please visit this <a target='_blank' href='https://sgi.sk.ca/handbook/-/knowledge_base/drivers/traffic-signs'>link</a>.</Alert>
         <Box ref={ScrollToRef} sx={{ scrollBehavior: "smooth" }}></Box>
         {showAlert && <Alert severity="error">Please answer all the questions.</Alert>}
         {currentQuestions.map((question, key) => <Question
